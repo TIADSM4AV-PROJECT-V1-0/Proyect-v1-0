@@ -1,0 +1,140 @@
+openapi: 3.0.3
+info:
+  title: GourmetDishesAPI 1.0
+  description: |-
+    The GourmetDishesAPI provides access to a comprehensive collection of detailed information about a variety of gourmet dishes from different parts of the world. This API is designed for food enthusiasts, chefs, culinary app developers, and gastronomy lovers who want to access accurate and up-to-date data about exquisite dishes.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+tags:
+  - name: Dishes
+    description: Operations about dishes
+
+paths:
+  /dishes:
+    get:
+      tags:
+        - Dishes
+      summary: Get dishes
+      description: Get a list of gourmet dishes.
+      operationId: getDishes
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dish'
+    post:
+      tags:
+        - Dishes
+      summary: Create a dish
+      description: Create a new gourmet dish.
+      operationId: createDish
+      requestBody:
+        description: New dish data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DishInput'
+      responses:
+        '201':
+          description: Dish created successfully
+  /dishes/{dishId}:
+    get:
+      tags:
+        - Dishes
+      summary: Get a dish by ID
+      description: Get details of a gourmet dish by its ID.
+      operationId: getDishById
+      parameters:
+        - name: dishId
+          in: path
+          description: The ID of the dish to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        '404':
+          description: Dish not found
+    put:
+      tags:
+        - Dishes
+      summary: Update a dish
+      description: Update an existing gourmet dish.
+      operationId: updateDish
+      parameters:
+        - name: dishId
+          in: path
+          description: The ID of the dish to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated dish data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DishInput'
+      responses:
+        '200':
+          description: Successful operation
+        '404':
+          description: Dish not found
+    delete:
+      tags:
+        - Dishes
+      summary: Delete a dish
+      description: Delete a gourmet dish by its ID.
+      operationId: deleteDish
+      parameters:
+        - name: dishId
+          in: path
+          description: The ID of the dish to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '404':
+          description: Dish not found
+
+components:
+  schemas:
+    Dish:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        title:
+          type: string
+          example: Dish Title
+        description:
+          type: string
+          example: Description of the dish
+      xml:
+        name: dish
+    DishInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      xml:
+        name: dish
