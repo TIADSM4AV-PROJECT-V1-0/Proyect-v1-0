@@ -14,6 +14,7 @@ tags:
 paths:
   /dishes:
     get:
+    //JE
       tags:
         - Dishes
       summary: Get dishes
@@ -47,11 +48,12 @@ paths:
     get:
       tags:
         - Dishes
+        //GT
       summary: Get a dish by ID
       description: Get details of a gourmet dish by its ID.
       operationId: getDishById
       parameters:
-        - name: dishId
+        - name: dihId
           in: path
           description: The ID of the dish to retrieve
           required: true
