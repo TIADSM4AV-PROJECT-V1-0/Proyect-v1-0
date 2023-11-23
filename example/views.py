@@ -2,12 +2,13 @@
 # example/views.py
 from datetime import datetime
 
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
 
 def index(request):
     now = datetime.now()
     
-   return render (request,'example/index.html',{"current_time":now})
+   return render (request, 'example/index.html', {"current_time": now})
 
    def dishes (request):
     list_dishes =list ()
