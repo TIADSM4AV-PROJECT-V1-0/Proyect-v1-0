@@ -14,7 +14,6 @@ tags:
 paths:
   /dishes:
     get:
-    //JE
       tags:
         - Dishes
       summary: Get dishes
@@ -48,12 +47,11 @@ paths:
     get:
       tags:
         - Dishes
-        //GT
       summary: Get a dish by ID
       description: Get details of a gourmet dish by its ID.
       operationId: getDishById
       parameters:
-        - name: dihId
+        - name: dishId  # Corrected parameter name
           in: path
           description: The ID of the dish to retrieve
           required: true
@@ -76,7 +74,7 @@ paths:
       description: Update an existing gourmet dish.
       operationId: updateDish
       parameters:
-        - name: dishId
+        - name: dishId  # Corrected parameter name
           in: path
           description: The ID of the dish to update
           required: true
@@ -101,7 +99,7 @@ paths:
       description: Delete a gourmet dish by its ID.
       operationId: deleteDish
       parameters:
-        - name: dishId
+        - name: dishId  # Corrected parameter name
           in: path
           description: The ID of the dish to delete
           required: true
@@ -139,4 +137,4 @@ components:
         description:
           type: string
       xml:
-        name: dish
+        name: dish
